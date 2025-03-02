@@ -10,6 +10,12 @@ github_url = 'https://github.com/nghorvat'
 twitter_url = 'https://x.com/DJSnuggz'
 linkedin_url = 'https://www.linkedin.com/in/nathan-horvath/'
 
+main_colour = '#E4A300'
+dark_grey = '#1A1A1A'
+light_grey = '#333333'
+muted_white = '#BDBDBD'
+extra_muted_white = '#8A8780'
+
 def _github_icon_link(h, w): return UkIconLink("github", height=h, width=w, href=github_url, cls="text-[#E4A300]")
 def _twitter_icon_link(h, w): return UkIconLink("twitter", height=h, width=w, href=twitter_url, cls='text-[#E4A300]')
 def _linkedin_icon_link(h, w): return UkIconLink("linkedin", height=h, width=w, href=linkedin_url, cls='text-[#E4A300]')
@@ -140,7 +146,18 @@ def index():
                 P("I'm a Data Scientist exploring the intersection of machine learning, operations research, and artificial intelligence to solve real-world challenges.", cls=(TextT.lg, TextT.bold)),
                 P("On this blog, I share insights from my learning journey with Python programming, data science concepts, and emerging AI tools.", cls=TextT.lg),
                 P("I'll be gradually expanding this website with new posts and projects.", cls=TextT.lg),
-                P("Consider subscribing to stay updated!", cls=TextT.lg),
+                Container(
+                        DivCentered(
+                            P("Subscribe to follow along", cls=TextT.bold),
+                            DivHStacked(
+                                Input(placeholder="Your email", cls='bg-[#333333]'),
+                                Button("Join", cls=(ButtonT.primary, 'bg-[#e4A300]'))
+                            ),
+                            cls='space-y-4 p-4'
+                    ),
+                    cls=(ContainerT.lg, "rounded-lg"),
+                    style="background-color: #1A1A1A"
+                ),
                 cls='space-y-3 p-6'
             ),
             DividerSplit(),
