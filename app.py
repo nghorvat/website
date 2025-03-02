@@ -132,16 +132,22 @@ def _blog_post_footer():
     return Div(
         DividerSplit(),
         P(I('Thanks for reading!'), cls=(TextT.lg, f'text-[{muted_white}]')),
-        Container(
-            Div(
+        Div(
                 P("Enjoyed this post?", cls=TextPresets.bold_lg),
                 P("Subscribe to get notified when I publish new content", cls=(TextT.lg, f'text-[{muted_white}]')),
                 _subscribe_form(),
-                cls='flex flex-col items-start space-y-4 p-4 -ml-2'
+                cls=(f"bg-[{dark_grey}]", "rounded-lg")
             ),
-            cls=(ContainerT.lg, "rounded-lg"),
-            style=f"background-color: {dark_grey}"
-        ),
+        #Container(
+        #    Div(
+        #        P("Enjoyed this post?", cls=TextPresets.bold_lg),
+        #        P("Subscribe to get notified when I publish new content", cls=(TextT.lg, f'text-[{muted_white}]')),
+        #        _subscribe_form(),
+        #        cls='flex flex-col items-start space-y-4 p-4 -ml-2'
+        #    ),
+        #    cls=(ContainerT.lg, "rounded-lg"),
+        #    style=f"background-color: {dark_grey}"
+        #),
         cls = 'space-y-6'
     )
 
@@ -172,18 +178,13 @@ def index():
                 P("I'm a Data Scientist exploring the intersection of machine learning, operations research, and artificial intelligence to solve real-world challenges.", cls=(TextT.lg, TextT.bold)),
                 P("On this blog, I share insights from my learning journey with Python programming, data science concepts, and emerging AI tools.", cls=TextT.lg),
                 P("I'll be gradually expanding this website with new posts and projects.", cls=TextT.lg),
-                Container(
-                        DivCentered(
-                            P("Subscribe to follow along", cls=TextPresets.bold_lg),
-                            _subscribe_form(),
-                            cls='space-y-4 p-4'
-                    ),
-                    cls=(ContainerT.lg, "rounded-lg"),
-                    style=f"background-color: {dark_grey}"
-                ),
-                cls='space-y-3 p-6'
+                DivCentered(
+                        P("Subscribe to follow along", cls=TextPresets.bold_lg),
+                        _subscribe_form(),
+                        cls=('space-y-4 p-4', f"bg-[{dark_grey}]", "rounded-lg")
+                    )
             ),
-            DividerSplit(),
+            DividerSplit(cls='space-y-4'),
             DivCentered(
                  DivHStacked(
                     _github_icon_link(48, 48),
