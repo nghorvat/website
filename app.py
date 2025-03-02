@@ -121,6 +121,32 @@ def _blog_post(meta, content):
         cls='prose space-y-4'
     )
 
+def _subscribe_form():
+    return DivHStacked(
+        Input(placeholder="Your email", cls=(TextT.lg, f'bg-[{light_grey}]')),
+        Button("Subscribe", cls=(ButtonT.primary, f'bg-[{dark_yellow}]'))
+    )
+           
+
+def _blog_post_footer():
+    return Div(
+        DividerSplit(),
+        P(I('Thanks for reading!'), cls=(TextT.lg, f'text-[{muted_white}]')),
+        Container(
+            Div(
+                P("Enjoyed this post?", cls=TextPresets.bold_lg),
+                P("Subscribe to get notified when I publish new content", cls=(TextT.lg, f'text-[{muted_white}]')),
+                _subscribe_form(),
+                cls='flex flex-col items-start space-y-4 p-4 -ml-2'
+            ),
+            cls=(ContainerT.lg, "rounded-lg"),
+            style=f"background-color: {dark_grey}"
+        ),
+        cls = 'space-y-6'
+    )
+
+
+
 @rt("/blog")
 def blog_home():
     return Div(
@@ -148,11 +174,8 @@ def index():
                 P("I'll be gradually expanding this website with new posts and projects.", cls=TextT.lg),
                 Container(
                         DivCentered(
-                            P("Subscribe to follow along", cls=TextT.bold),
-                            DivHStacked(
-                                Input(placeholder="Your email", cls=f'bg-[{light_grey}]'),
-                                Button("Join", cls=(ButtonT.primary, f'bg-[{dark_yellow}]'))
-                            ),
+                            P("Subscribe to follow along", cls=TextPresets.bold_lg),
+                            _subscribe_form(),
                             cls='space-y-4 p-4'
                     ),
                     cls=(ContainerT.lg, "rounded-lg"),
@@ -182,8 +205,10 @@ def blog_post_page(slug: str):
         _navbar(),
         Div(
             _blog_post(*post),
+            _blog_post_footer(),
             cls='p-14'
-        )
+        ),
+        
     )
 
 
